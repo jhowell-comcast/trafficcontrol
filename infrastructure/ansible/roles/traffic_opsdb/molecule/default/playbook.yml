@@ -1,0 +1,29 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: yes
+  become: yes
+
+  tasks:
+    - name: Create Postgres group
+      group:
+        name: "postgres"
+        gid: "1234"
+
+    - name: Create Postgres user
+      user:
+        name: "postgres"
+        shell: /bin/bash
+        group: "1234"
+        uid: "1234"
+
+    - name: Deploy Traffic_opsdb
+      import_role:
+        name: traffic_opsdb
+      vars:
+        install_traffic_opsdb: true
+        initialize_traffic_opsdb: true
+        postgresql_admin_user: postgres
+        postgresql_admin_user_password: pw123*
+        todb_username: trafficops
+        todb_password: pw123#
