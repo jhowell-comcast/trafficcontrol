@@ -17,7 +17,8 @@ tm_pkg_name: "{% if tm_version is defined and tm_version != omit %}{{ 'traffic_m
 
 # Traffic Monitor installation information
 tm_base_dir: '/opt/traffic_monitor'
-tm_log_dir: "{{ tm_base_dir}}/var/log"
+tm_log_dir: "{{ tm_base_dir }}/var/log"
+tm_conf_dir: "{{ tm_base_dir }}/conf"
 
 # Local OS User for the Traffic Monitor process
 tm_user: traffic_monitor
@@ -54,3 +55,11 @@ tm_traffic_ops_url: 'https://localhost'
 tm_traffic_ops_allow_insecure: true
 tm_traffic_ops_target_cdn: 'some-cdn'
 tm_traffic_ops_http_listener: ':80'
+
+# traffic_ops.cfg https listener configuration
+tm_traffic_ops_use_https_listener: False
+tm_traffic_ops_https_listener: ':443'
+tm_traffic_ops_key_file_location: "{{ tm_conf_dir }}/traffic_monitor_ssl.key"
+tm_traffic_ops_cert_file_location: "{{ tm_conf_dir }}/traffic_monitor_ssl.crt"
+tm_traffic_ops_https_cert: ""
+tm_traffic_ops_https_key: ""

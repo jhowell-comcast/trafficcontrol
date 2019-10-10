@@ -45,6 +45,28 @@
   notify: Restart Traffic Monitor
   become: yes
 
+- name: Copy HTTPS/SSL key to specified directory
+  copy:
+    content: "{{ tm_traffic_ops_https_key }}"
+    dest: "{{ tm_traffic_ops_key_file_location }}"
+    mode: 0400
+    owner: traffic_monitor
+    group: traffic_monitor
+  notify: Restart Traffic Monitor
+  become: yes
+  when: tm_traffic_ops_use_https_listener == True
+
+- name: Copy HTTPS/SSL certificate to specified directory
+  copy:
+    content: "{{ tm_traffic_ops_https_cert }}"
+    dest: "{{ tm_traffic_ops_cert_file_location }}"
+    mode: 0400
+    owner: traffic_monitor
+    group: traffic_monitor
+  notify: Restart Traffic Monitor
+  become: yes
+  when: tm_traffic_ops_use_https_listener == True
+
 - name: Enable traffic_monitor
   service:
     name: traffic_monitor
