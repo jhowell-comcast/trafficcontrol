@@ -17,12 +17,12 @@
         "url": "{{ tm_traffic_ops_url }}",
         "insecure": {{ tm_traffic_ops_allow_insecure | lower }},
         "cdnName": "{{ tm_traffic_ops_target_cdn }}",
-        {% if tm_traffic_ops_use_https_listener %}
+{% if tm_traffic_ops_use_https_listener %}
         "httpListener": "{{ tm_traffic_ops_http_listener }}",
         "httpsListener": "{{ tm_traffic_ops_https_listener }}",
         "certFile": "{{ tm_traffic_ops_cert_file_location }}",
         "keyFile": "{{ tm_traffic_ops_key_file_location }}"
-        {% else %}
+{% else %}
         "httpListener": "{{ tm_traffic_ops_http_listener }}"
-        {% endif %}
+{% endif %}
 }
