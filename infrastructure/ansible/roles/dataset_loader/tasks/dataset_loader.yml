@@ -819,6 +819,9 @@
   vars:
     Target_cdn_delegation: Invalid (just for rendering)
 
+- fail:
+    msg: "Temporarily fail here to break the environment build process for debugging"
+    
 - name: Handle Delivery Service CDN Templates
   include_tasks: ds_loader.yml
   vars:
